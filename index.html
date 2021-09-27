@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffe Shop</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <main id="root">
+        <div id="menu">
+            <label for="coffeeMenu">Välj kaffesort</label>
+            <select name="coffeeMenu" id="coffeeMenu">
+            </select>
+
+            <label for="amountOfCups">Antal</label>
+            <input type="text" id="amountOfCups" value="1">
+            <button id="btn">Köp</button>
+
+            <p id="errorMessage"></p>
+
+            <p id="totalSpent"></p>
+            <p id="membershipStatus"></p>
+        </div>
+
+        <hr>
+
+        <div id="transactions">
+            <h1 id="transactionHeader"></h1>
+            <ul id="transactionList">
+
+            </ul>
+        </div>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
