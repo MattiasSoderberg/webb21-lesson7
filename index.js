@@ -1,19 +1,18 @@
 const coffees = [
     { name: "Bryggkaffe", price: 20 },
     { name: "Cappucino", price: 30 },
-    { name: "Latte", price: 40 }
+    { name: "Latte", price: 40 },
+    { name: "Americano", price: 75 }
 ]
 
 class Customer {
     constructor() {
         this.transactions = []
-        this.numberOfBoughtCups = 0 //Not used. Used before to declare getStatus()
         this.silverThreshold = 500 //Defines the limit for discount and membershipstatus
         this.goldThreshold = 1000
     }
     addTransaction(transaction) {
         this.transactions.push(transaction)
-        this.numberOfBoughtCups += transaction.amount //old
     }
     getLatestTransaction() {
         return this.transactions[this.transactions.length - 1]
@@ -29,6 +28,16 @@ class Customer {
             sum += transaction.totalSpent
         })
         return sum
+    }
+    calculateDiscount(pricePerCup) {
+        let discount = 1
+
+        if(this.getTotalSpent() + pricePerCup >= this.silverThreshold && this.getTotalSpent() + pricePerCup < this.goldThreshold) {
+            discount = 0.9
+        } else if(this.getTotalSpent() + pricePerCup >= this.goldThreshold) {
+            discount = 0.85
+        }
+        return discount
     }
 
 }
@@ -92,13 +101,7 @@ btn.addEventListener("click", (event) => {
 
     //Sets the value to totalSpent variable per cup bought so the discount is applied to every single cup
     for (let i = 0; i < amount; i++) {
-        if (customer.getTotalSpent() + totalSpent >= 1000) {
-            totalSpent += price * 0.85
-        } else if (customer.getTotalSpent() + totalSpent < 1000 && customer.getTotalSpent() + totalSpent >= 500) {
-            totalSpent += price * 0.9
-        } else {
-            totalSpent += price
-        }
+        totalSpent += price * customer.calculateDiscount(totalSpent)
     }
 
     //Check if the input is not less than and over 10 and set a value to the errorMessage paragraph
