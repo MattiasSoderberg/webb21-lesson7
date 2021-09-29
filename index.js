@@ -104,7 +104,7 @@ btn.addEventListener("click", (event) => {
         totalSpent += price * customer.calculateDiscount(totalSpent)
     }
 
-    //Check if the input is not less than and over 10 and set a value to the errorMessage paragraph
+    //Check if the input is not less than 1 and not over 10 and set a value to the errorMessage paragraph
     if (!amount < 1) {
         if (amount > 10) {
             errorMessage.innerHTML = "Du får inte köpa fler än 10 koppar"
